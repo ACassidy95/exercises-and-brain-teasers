@@ -23,7 +23,7 @@ func TotalWaviness(num1 int, num2 int) int {
 	// Calculate the nearest power of 10 not greater than
 	// the input value
 	magnitude := func(x int) int {
-		m := 1
+		m := 0
 		for {
 			x /= 10
 			if x == 0 {
@@ -36,21 +36,25 @@ func TotalWaviness(num1 int, num2 int) int {
 
 	for i := min; i <= max; i++ {
 		m := int(math.Pow(10., float64(magnitude(i))))
+		curr := i
 		for m > 0 {
-			digits = append(digits, i/m)
-			i -= m
+			d := curr / m
+			digits = append(digits, d)
+			curr -= (m * d)
 			m /= 10
 		}
 
-		for j := 1; j < len(digits)-2; j++ {
-			if digits[j-1] < digits[j] {
+		for j := 1; j <= len(digits)-2; j++ {
+			if digits[j-1] < digits[j] && digits[j] > digits[j+1] {
 				waviness++
 			}
-			if digits[j] < digits[j+1] {
+			if digits[j-1] > digits[j] && digits[j] < digits[j+1] {
 				waviness++
 			}
 		}
+
+		digits = nil
 	}
 
-	return 0
+	return waviness
 }

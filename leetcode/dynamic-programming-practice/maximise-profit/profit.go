@@ -6,5 +6,21 @@
 package maximiseprofit
 
 func MaximiseProfit(prices []int) int {
-	return 0
+	var lowestPrice, largestDiff int
+
+	for i, price := range prices {
+		if i == 0 {
+			lowestPrice = price
+		}
+
+		if price < lowestPrice {
+			lowestPrice = price
+		}
+
+		if i != 0 && price-lowestPrice > largestDiff {
+			largestDiff = price - lowestPrice
+		}
+	}
+
+	return largestDiff
 }

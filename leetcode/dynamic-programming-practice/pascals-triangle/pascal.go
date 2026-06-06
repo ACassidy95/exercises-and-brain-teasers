@@ -18,3 +18,20 @@ func GeneratePascalsTriangle(n int) [][]int {
 	}
 	return pt
 }
+
+func GeneratePascalsTriangleRow(rowIndex int) []int {
+	pt := make([][]int, rowIndex+1)
+	pt[0] = make([]int, 1)
+	pt[0][0] = 1
+
+	for i := 1; i < rowIndex+1; i++ {
+		pt[i] = make([]int, i+1)
+		pt[i][0] = 1
+		pt[i][i] = 1
+
+		for j := 1; j < i; j++ {
+			pt[i][j] = pt[i-1][j-1] + pt[i-1][j]
+		}
+	}
+	return pt[rowIndex]
+}

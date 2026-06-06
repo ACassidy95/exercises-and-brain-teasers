@@ -43,3 +43,32 @@ func TestGeneratePascalsTriangle(t *testing.T) {
 		})
 	}
 }
+
+func TestGeneratePascalsTriangleRows(t *testing.T) {
+	testCases := map[string]struct {
+		rowIndex int
+		expected []int
+	}{
+		"First Row": {
+			rowIndex: 0,
+			expected: []int{1},
+		},
+		"Second Row": {
+			rowIndex: 1,
+			expected: []int{1, 1},
+		},
+		"Fifth Row": {
+			rowIndex: 4,
+			expected: []int{1, 4, 6, 4, 1},
+		},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			got := pascalstriangle.GeneratePascalsTriangleRow(tc.rowIndex)
+			if !reflect.DeepEqual(got, tc.expected) {
+				t.Fatalf("Expected: %v, Got: %v", tc.expected, got)
+			}
+		})
+	}
+}

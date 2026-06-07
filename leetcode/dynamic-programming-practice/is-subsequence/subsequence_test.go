@@ -26,8 +26,13 @@ func TestIsSubsequence(t *testing.T) {
 			t:        "ahbgdc",
 			expected: true,
 		},
-		"No subsequence": {
+		"No subsequence 1": {
 			s:        "axc",
+			t:        "ahbgdc",
+			expected: false,
+		},
+		"No subsequence 2": {
+			s:        "bac",
 			t:        "ahbgdc",
 			expected: false,
 		},

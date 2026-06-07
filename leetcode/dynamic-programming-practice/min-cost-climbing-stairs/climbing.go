@@ -6,5 +6,28 @@
 package mincostclimbingstairs
 
 func ClimbStairsWithCost(cost []int) int {
-	return 0
+	// dp will track the minimum cost to reach position i
+	var dp []int
+	var min func(int, int) int
+
+	min = func(m, n int) int {
+		if m < n {
+			return m
+		} else {
+			return n
+		}
+	}
+
+	dp = make([]int, len(cost)+1)
+
+	for i := len(cost) - 1; i >= 0; i-- {
+		if i+1 >= len(cost) {
+			dp[i] = cost[i]
+		} else {
+			dp[i] = cost[i] + min(dp[i+1], dp[i+2])
+		}
+
+	}
+
+	return min(dp[0], dp[1])
 }

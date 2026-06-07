@@ -5,19 +5,16 @@ package countingbits
 
 func CountBits(n int) []int {
 	var bitcounts []int
+	var powIdx int
 
-	bitcounts = append(bitcounts, 0)
+	bitcounts = make([]int, n+1)
 	for i := 1; i <= n; i++ {
-
 		// Powers of two only contain 1 zero so can skip computation
 		if (i & (i - 1)) == 0 {
-			bitcounts = append(bitcounts, 1)
+			bitcounts[i] = 1
+			powIdx = i
 		} else {
-			if i%2 != 0 {
-				bitcounts = append(bitcounts, bitcounts[i-1]+1)
-			} else {
-				bitcounts = append(bitcounts, bitcounts[i-1])
-			}
+			bitcounts[i] = bitcounts[powIdx] + bitcounts[i-powIdx]
 		}
 	}
 

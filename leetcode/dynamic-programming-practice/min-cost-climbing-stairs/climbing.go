@@ -6,7 +6,7 @@
 package mincostclimbingstairs
 
 func ClimbStairsWithCost(cost []int) int {
-	// dp will track the minimum cost to reach position i
+	// dp will track the minimum cost to reach the top from position i
 	var dp []int
 	var min func(int, int) int
 

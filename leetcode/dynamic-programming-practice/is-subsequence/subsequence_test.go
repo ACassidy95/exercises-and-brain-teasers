@@ -36,6 +36,11 @@ func TestIsSubsequence(t *testing.T) {
 			t:        "ahbgdc",
 			expected: false,
 		},
+		"No subsequence 3": {
+			s:        "a",
+			t:        "b",
+			expected: false,
+		},
 	}
 
 	for name, tc := range testCases {

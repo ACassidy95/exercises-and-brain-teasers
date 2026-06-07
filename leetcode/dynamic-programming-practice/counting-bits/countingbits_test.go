@@ -27,6 +27,10 @@ func TestCountBits(t *testing.T) {
 			n:        5,
 			expected: []int{0, 1, 1, 2, 1, 2},
 		},
+		"Sixteen": {
+			n:        16,
+			expected: []int{0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1},
+		},
 	}
 
 	for name, tc := range testCases {

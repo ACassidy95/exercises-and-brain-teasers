@@ -14,6 +14,10 @@ func TestTribonacci(t *testing.T) {
 			n:        4,
 			expected: 4,
 		},
+		"T(12)": {
+			n:        12,
+			expected: 504,
+		},
 		"T(25)": {
 			n:        25,
 			expected: 1389537,

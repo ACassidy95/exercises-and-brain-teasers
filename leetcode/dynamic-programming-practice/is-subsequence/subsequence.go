@@ -10,15 +10,18 @@ func IsSubsequence(s, t string) bool {
 	var found bool
 	var i, j int
 
-	found = true
-	for i, j = 0, 0; i != len(s)-1 && j != len(t)-1; j++ {
+	if s == "" {
+		return true
+	}
+
+	for i, j = 0, 0; i < len(s) && j < len(t); j++ {
 		if s[i] == t[j] {
 			i++
 		}
 	}
 
-	if i != len(s)-1 {
-		found = false
+	if i == len(s) {
+		found = true
 	}
 
 	return found

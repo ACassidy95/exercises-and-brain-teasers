@@ -8,5 +8,15 @@
 package longestalternatingsubsequence
 
 func LongestAlternatingSubsequence(words []string, groups []int) []string {
-	return nil
+	var seq []string
+
+	curr := -1
+	for i, word := range words {
+		if groups[i] != curr {
+			curr = groups[i]
+			seq = append(seq, word)
+		}
+	}
+
+	return seq
 }

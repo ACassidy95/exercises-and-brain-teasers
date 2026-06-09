@@ -10,5 +10,33 @@
 package countrepeatingsubstring
 
 func CountRepeatingSubstring(sequence, word string) int {
-	return 0
+	var dp []int
+	var dpMax int
+
+	slen := len(sequence)
+	wlen := len(word)
+
+	dp = make([]int, slen)
+
+	for i := slen - 1; i >= wlen-1; i-- {
+		var j, k int
+		for j, k = wlen-1, i; j >= 0 && word[j] == sequence[k]; j, k = j-1, k-1 {
+		}
+
+		if k == i-wlen {
+			if i >= slen-wlen {
+				dp[i] = dp[k+wlen] + 1
+			} else {
+				dp[i] = dp[i+wlen] + 1
+			}
+		}
+	}
+
+	for _, d := range dp {
+		if d > dpMax {
+			dpMax = d
+		}
+	}
+
+	return dpMax
 }

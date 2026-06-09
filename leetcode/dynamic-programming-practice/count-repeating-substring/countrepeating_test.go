@@ -26,6 +26,21 @@ func TestCountRepeatingSubstring(t *testing.T) {
 			word:     "ac",
 			expected: 0,
 		},
+		"sequence = \"ababc\", word = \"\"": {
+			sequence: "ababc",
+			word:     "ac",
+			expected: 0,
+		},
+		"sequence = \"a\", word = \"a\"": {
+			sequence: "a",
+			word:     "a",
+			expected: 1,
+		},
+		"sequence = \"aaabaaaabaaabaaaabaaaabaaaabaaaaba\", word = \"aaaba\"": {
+			sequence: "aaabaaaabaaabaaaabaaaabaaaabaaaaba",
+			word:     "aaaba",
+			expected: 5,
+		},
 	}
 
 	for name, tc := range testCases {

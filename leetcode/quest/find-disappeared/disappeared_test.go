@@ -11,21 +11,13 @@ func TestFindDisappeared(t *testing.T) {
 		nums     []int
 		expected []int
 	}{
-		"[8,1,2,2,3]": {
-			nums:     []int{8, 1, 2, 2, 3},
-			expected: []int{4, 0, 1, 1, 3},
+		"[4,3,2,7,8,2,3,1]": {
+			nums:     []int{4, 3, 2, 7, 8, 2, 3, 1},
+			expected: []int{5, 6},
 		},
-		"[6,5,4,8]": {
-			nums:     []int{6, 5, 4, 8},
-			expected: []int{2, 1, 0, 3},
-		},
-		"[7,7,7,7]": {
-			nums:     []int{7, 7, 7, 7},
-			expected: []int{0, 0, 0, 0},
-		},
-		"[7]": {
-			nums:     []int{7},
-			expected: []int{0},
+		"[1,1]": {
+			nums:     []int{1, 1},
+			expected: []int{2},
 		},
 	}
 

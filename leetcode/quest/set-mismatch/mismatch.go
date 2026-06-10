@@ -1,20 +1,34 @@
 package setmismatch
 
 func SetMismatch(nums []int) []int {
-	var dup, xor int
+	var xorAll, xorNums, xorRes, rightBit, xorSet, xorUnset int
 
-	xor ^= nums[0]
-	for i := 1; i < len(nums); i++ {
-		xor ^= nums[i]
-		if nums[i] == nums[i-1] {
-			dup = nums[i]
+	for i, num := range nums {
+		xorAll ^= i + 1
+		xorNums ^= num
+	}
+
+	xorRes = xorAll ^ xorNums
+	rightBit = xorRes & -xorRes
+
+	for i, num := range nums {
+		if (i+1)&rightBit != 0 {
+			xorSet ^= (i + 1)
+		} else {
+			xorUnset ^= (i + 1)
+		}
+
+		if num&rightBit != 0 {
+			xorSet ^= num
+		} else {
+			xorUnset ^= num
 		}
 	}
 
-	xor ^= dup
-	for i := 1; i <= len(nums); i++ {
-		xor ^= i
+	for _, num := range nums {
+		if xorSet == num {
+			return []int{xorSet, xorUnset}
+		}
 	}
-
-	return []int{dup, xor}
+	return []int{xorUnset, xorSet}
 }

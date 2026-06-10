@@ -27,6 +27,14 @@ func TestSetMismatch(t *testing.T) {
 			nums:     []int{3, 2, 2},
 			expected: []int{2, 1},
 		},
+		"[2, 3, 2]": {
+			nums:     []int{2, 3, 2},
+			expected: []int{2, 1},
+		},
+		"[1, 2, 3, 4, 5, 5, 7, 8, 9]": {
+			nums:     []int{1, 2, 3, 4, 5, 5, 7, 8, 9},
+			expected: []int{5, 6},
+		},
 	}
 
 	for name, tc := range testCases {

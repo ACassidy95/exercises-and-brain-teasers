@@ -1,12 +1,12 @@
-package smallernumbers_test
+package finddisappeared_test
 
 import (
-	smallernumbers "quest/smaller-numbers"
+	finddisappeared "quest/find-disappeared"
 	"reflect"
 	"testing"
 )
 
-func TestSmallerNumbersThanCurrent(t *testing.T) {
+func TestFindDisappeared(t *testing.T) {
 	testCases := map[string]struct {
 		nums     []int
 		expected []int
@@ -31,7 +31,7 @@ func TestSmallerNumbersThanCurrent(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			got := smallernumbers.SmallerNumbersThanCurrentOpt(tc.nums)
+			got := finddisappeared.FindDisappeared(tc.nums)
 			if !reflect.DeepEqual(tc.expected, got) {
 				t.Fatalf("Expected: %v, Got: %v", tc.expected, got)
 			}

@@ -19,3 +19,24 @@ func SmallerNumbersThanCurrent(nums []int) []int {
 
 	return counts
 }
+
+func SmallerNumbersThanCurrentOpt(nums []int) []int {
+	const maxNumsLen int = 101
+	var dp, counts []int
+
+	dp = make([]int, maxNumsLen)
+	counts = make([]int, len(nums))
+	for _, num := range nums {
+		dp[num]++
+	}
+
+	for i := 1; i < maxNumsLen-1; i++ {
+		dp[i] = dp[i] + dp[i-1]
+	}
+
+	for i, num := range nums {
+		counts[i] = dp[num]
+	}
+
+	return counts
+}

@@ -6,5 +6,16 @@
 package smallernumbers
 
 func SmallerNumbersThanCurrent(nums []int) []int {
-	return nil
+	var counts []int
+
+	counts = make([]int, len(nums))
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j < len(nums); j++ {
+			if nums[j] < nums[i] {
+				counts[i]++
+			}
+		}
+	}
+
+	return counts
 }

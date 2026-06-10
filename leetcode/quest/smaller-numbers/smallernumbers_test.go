@@ -23,6 +23,10 @@ func TestSmallerNumbersThanCurrent(t *testing.T) {
 			nums:     []int{7, 7, 7, 7},
 			expected: []int{0, 0, 0, 0},
 		},
+		"[7]": {
+			nums:     []int{7},
+			expected: []int{0},
+		},
 	}
 
 	for name, tc := range testCases {

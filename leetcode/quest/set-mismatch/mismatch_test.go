@@ -21,7 +21,7 @@ func TestSetMismatch(t *testing.T) {
 		},
 		"[2, 2]": {
 			nums:     []int{2, 2},
-			expected: []int{2, 2},
+			expected: []int{2, 1},
 		},
 		"[3, 2, 2]": {
 			nums:     []int{3, 2, 2},

@@ -55,10 +55,14 @@ func DeleteMiddleNodeFaster(head *ListNode) *ListNode {
 
 	// fast moves 2 steps for curr's 1, meaning when fast becomes nil
 	// curr will naturally be at the middle node
-	for curr, fast = head, head; curr.Next != nil && fast.Next != nil; fast = fast.Next {
+	curr, fast = head, head
+	for fast.Next != nil {
 		prev = curr
 		curr = curr.Next
 		fast = fast.Next
+		if fast.Next != nil {
+			fast = fast.Next
+		}
 	}
 
 	if prev != nil {
@@ -69,5 +73,31 @@ func DeleteMiddleNodeFaster(head *ListNode) *ListNode {
 		head = nil
 	}
 
+	return head
+}
+
+// Floyd's Tortoise & Hare Algorithm:
+// Initialises two pointers: slow and fast
+// slow begins at head, and fast begins already two steps ahead.
+// For 2 elements this means fast will already have gone off the end and
+// we only need to delete the 2nd element (index 1)
+//
+
+func DeleteMiddleNodeOptimal(head *ListNode) *ListNode {
+	var slow, fast *ListNode
+
+	if head.Next == nil {
+		return nil
+	}
+
+	slow = head
+	fast = slow.Next.Next
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	slow.Next = slow.Next.Next
 	return head
 }

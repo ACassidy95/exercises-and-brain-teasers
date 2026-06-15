@@ -42,10 +42,12 @@ func createLinkedList(vals []int) *deletemiddlelinkednode.ListNode {
 
 	head = deletemiddlelinkednode.NewListNode()
 	curr = head
-	for _, val := range vals {
+	for i, val := range vals {
 		curr.Val = val
-		curr.Next = deletemiddlelinkednode.NewListNode()
-		curr = curr.Next
+		if i < len(vals)-1 {
+			curr.Next = deletemiddlelinkednode.NewListNode()
+			curr = curr.Next
+		}
 	}
 
 	return head

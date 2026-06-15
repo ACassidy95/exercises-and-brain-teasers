@@ -6,7 +6,9 @@ type ListNode struct {
 }
 
 func NewListNode() *ListNode {
-	return &ListNode{}
+	return &ListNode{
+		Next: nil,
+	}
 }
 
 func (l *ListNode) AsSlice() []int {
@@ -19,5 +21,22 @@ func (l *ListNode) AsSlice() []int {
 }
 
 func DeleteMiddleNode(head *ListNode) *ListNode {
-	return nil
+	var len, del int
+	var curr, prev *ListNode
+
+	len = 0
+	for curr = head; curr != nil; curr = curr.Next {
+		len++
+	}
+	del = len / 2
+
+	for curr = head; del != 0; curr, del = curr.Next, del-1 {
+		prev = curr
+	}
+
+	prev.Next = curr.Next
+	curr.Next = nil
+	curr = nil
+
+	return head
 }

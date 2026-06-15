@@ -49,3 +49,25 @@ func DeleteMiddleNode(head *ListNode) *ListNode {
 
 	return head
 }
+
+func DeleteMiddleNodeFaster(head *ListNode) *ListNode {
+	var curr, fast, prev *ListNode
+
+	// fast moves 2 steps for curr's 1, meaning when fast becomes nil
+	// curr will naturally be at the middle node
+	for curr, fast = head, head; curr.Next != nil && fast.Next != nil; fast = fast.Next {
+		prev = curr
+		curr = curr.Next
+		fast = fast.Next
+	}
+
+	if prev != nil {
+		prev.Next = curr.Next
+		curr.Next = nil
+		curr = nil
+	} else {
+		head = nil
+	}
+
+	return head
+}

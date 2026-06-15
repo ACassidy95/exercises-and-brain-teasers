@@ -32,7 +32,7 @@ func TestDeleteMiddleNode(t *testing.T) {
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
 			testHead := createLinkedList(tc.vals)
-			gotHead := deletemiddlelinkednode.DeleteMiddleNode(testHead)
+			gotHead := deletemiddlelinkednode.DeleteMiddleNodeFaster(testHead)
 			gotSlice := gotHead.AsSlice()
 			if !reflect.DeepEqual(tc.expected, gotSlice) {
 				t.Fatalf("Expected: %v, Got: %v", tc.expected, gotSlice)

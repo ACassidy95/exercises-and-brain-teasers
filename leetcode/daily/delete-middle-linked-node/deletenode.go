@@ -12,7 +12,7 @@ func NewListNode() *ListNode {
 }
 
 func (l *ListNode) AsSlice() []int {
-	var vals []int
+	var vals []int = []int{}
 	for l != nil {
 		vals = append(vals, l.Val)
 		l = l.Next
@@ -28,15 +28,24 @@ func DeleteMiddleNode(head *ListNode) *ListNode {
 	for curr = head; curr != nil; curr = curr.Next {
 		len++
 	}
-	del = len / 2
+
+	if len > 1 {
+		del = len / 2
+	} else {
+		del = 1
+	}
 
 	for curr = head; del != 0; curr, del = curr.Next, del-1 {
 		prev = curr
 	}
 
-	prev.Next = curr.Next
-	curr.Next = nil
-	curr = nil
+	if curr != nil {
+		prev.Next = curr.Next
+		curr.Next = nil
+		curr = nil
+	} else {
+		head = nil
+	}
 
 	return head
 }

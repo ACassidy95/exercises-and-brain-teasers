@@ -23,6 +23,10 @@ func TestDeleteMiddleNode(t *testing.T) {
 			vals:     []int{2, 1},
 			expected: []int{2},
 		},
+		"[1]": {
+			vals:     []int{1},
+			expected: []int{},
+		},
 	}
 
 	for name, tc := range testCases {

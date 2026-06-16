@@ -1,6 +1,8 @@
 package stringops
 
-import "slices"
+import (
+	"slices"
+)
 
 func ProcessStringOps(s string) string {
 	var chars []rune
@@ -8,7 +10,11 @@ func ProcessStringOps(s string) string {
 	for _, char := range s {
 		switch char {
 		case '*':
-			chars = chars[:len(chars)-1]
+			if len(chars) > 1 {
+				chars = chars[:len(chars)-1]
+			} else {
+				chars = []rune{}
+			}
 		case '#':
 			chars = append(chars, chars...)
 		case '%':

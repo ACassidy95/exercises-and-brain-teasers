@@ -18,6 +18,10 @@ func TestProcessStringOps(t *testing.T) {
 			input:    "z*#",
 			expected: "",
 		},
+		"*%": {
+			input:    "*%",
+			expected: "",
+		},
 	}
 
 	for name, tc := range testCases {

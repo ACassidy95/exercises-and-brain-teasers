@@ -8,7 +8,7 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
-func TestXxx(t *testing.T) {
+func TestGenerateParentheses(t *testing.T) {
 	testCases := map[string]struct {
 		n        int
 		expected []string
@@ -24,6 +24,26 @@ func TestXxx(t *testing.T) {
 		"n=3": {
 			n:        3,
 			expected: []string{"((()))", "(()())", "(())()", "()(())", "()()()"},
+		},
+		"n=4": {
+			n:        4,
+			expected: nil,
+		},
+		"n=5": {
+			n:        5,
+			expected: nil,
+		},
+		"n=6": {
+			n:        6,
+			expected: nil,
+		},
+		"n=7": {
+			n:        7,
+			expected: nil,
+		},
+		"n=8": {
+			n:        8,
+			expected: nil,
 		},
 	}
 

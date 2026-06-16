@@ -1,0 +1,36 @@
+package generateparens_test
+
+import (
+	generateparens "dynamic-programming-practice/generate-parens"
+	"testing"
+
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
+)
+
+func TestGenerateParens(t *testing.T) {
+	testCases := map[string]struct {
+		n        int
+		expected []string
+	}{
+		"n=1": {
+			n:        1,
+			expected: []string{"()"},
+		},
+		"n=2": {
+			n:        2,
+			expected: []string{"(())", "()()"},
+		},
+		"n=3": {
+			n:        3,
+			expected: []string{"((()))", "(()())", "(())()", "()(())", "()()()"},
+		},
+	}
+
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
+			got := generateparens.GenerateParens(tc.n)
+			equalIgnoreOrder := cmp.Diff(got, tc.expected, cmpopts.SortSlices(func(a, b string) bool { return a < b }))
+		})
+	}
+}

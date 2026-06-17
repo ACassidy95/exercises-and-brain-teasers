@@ -28,7 +28,7 @@ func Jump(nums []int) int {
 		if m == math.MaxInt {
 			m = 0
 		}
-		return max(1, m)
+		return m
 	}
 
 	/*
@@ -41,13 +41,19 @@ func Jump(nums []int) int {
 	 */
 	dp = make([]int, l)
 	for i := l - 2; i >= 0; i-- {
-		if nums[i] == 0 {
+		curr := nums[i]
+		if curr == 0 {
 			dp[i] = 0
-		} else if nums[i] >= l-1-i {
+		} else if curr >= l-1-i {
 			dp[i] = 1
 		} else {
-			mRange := dp[i+1 : i+nums[i]+1]
-			dp[i] = dp[i] + 1 + minNonZero(mRange...)
+			mRange := dp[i+1 : i+curr+1]
+			m := minNonZero(mRange...)
+			if m == 0 {
+				dp[i] = 0
+			} else {
+				dp[i] = dp[i] + 1 + m
+			}
 		}
 	}
 

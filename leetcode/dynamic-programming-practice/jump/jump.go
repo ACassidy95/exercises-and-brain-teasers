@@ -20,7 +20,7 @@ func Jump(nums []int) int {
 	minNonZero := func(ints ...int) int {
 		m := math.MaxInt
 		for _, i := range ints {
-			if i < m {
+			if i < m && i != 0 {
 				m = i
 			}
 		}

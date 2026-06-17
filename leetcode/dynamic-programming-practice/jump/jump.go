@@ -20,6 +20,10 @@ func Jump(nums []int) int {
 				m = i
 			}
 		}
+
+		if m == math.MaxInt {
+			m = 0
+		}
 		return max(1, m)
 	}
 
@@ -38,7 +42,9 @@ func Jump(nums []int) int {
 		} else if nums[i] >= len(nums)-1-i {
 			dp[i] = 1
 		} else {
-			mRange := dp[i:min(len(dp), i+nums[i])]
+			m := min(len(dp), i+nums[i])
+			mm := m + nums[i]
+			mRange := dp[m:mm]
 			dp[i] = dp[i] + 1 + minNonZero(mRange...)
 		}
 	}

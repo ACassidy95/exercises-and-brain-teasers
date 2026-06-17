@@ -18,6 +18,18 @@ func TestJump(t *testing.T) {
 			nums:     []int{2, 3, 0, 1, 4},
 			expected: 2,
 		},
+		"[1,2]": {
+			nums:     []int{1, 2},
+			expected: 1,
+		},
+		"[3,2,1]": {
+			nums:     []int{3, 2, 1},
+			expected: 1,
+		},
+		"[1,1,1,1]": {
+			nums:     []int{1, 1, 1, 1},
+			expected: 3,
+		},
 	}
 
 	for name, tc := range testCases {

@@ -17,7 +17,7 @@ func Jump(nums []int) int {
 				m = i
 			}
 		}
-		return m
+		return max(1, m)
 	}
 
 	dp = make([]int, len(nums))

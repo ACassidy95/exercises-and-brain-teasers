@@ -59,3 +59,17 @@ func Jump(nums []int) int {
 
 	return dp[0]
 }
+
+func JumpOpt(nums []int) int {
+	var jumps, end, farthest int
+
+	for i := 0; i < len(nums)-1; i++ {
+		farthest = max(farthest, i+nums[i])
+		if i == end {
+			jumps++
+			end = farthest
+		}
+	}
+
+	return jumps
+}

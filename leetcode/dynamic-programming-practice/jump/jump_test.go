@@ -46,7 +46,7 @@ func TestJump(t *testing.T) {
 
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
-			got := jump.Jump(tc.nums)
+			got := jump.JumpOpt(tc.nums)
 			if got != tc.expected {
 				t.Fatalf("Expected: %v, Got: %v", tc.expected, got)
 			}

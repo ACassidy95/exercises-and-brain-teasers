@@ -4,12 +4,16 @@ import "math"
 
 func Jump(nums []int) int {
 	var dp []int
+	var l int
+
+	l = len(nums)
 
 	// A list of one number takes 0 steps to reach the end
 	// and a list of two takes 1 (given we are guaranteed to reach the end)
-	if len(nums) == 1 {
+	switch l {
+	case 1:
 		return 0
-	} else if len(nums) == 2 {
+	case 2:
 		return 1
 	}
 
@@ -35,16 +39,14 @@ func Jump(nums []int) int {
 	 * i.e. dp[i] = 1 + min(dp[i:i+nums[i]])
 	 * (0s are dead ends)
 	 */
-	dp = make([]int, len(nums))
-	for i := len(nums) - 2; i >= 0; i-- {
+	dp = make([]int, l)
+	for i := l - 2; i >= 0; i-- {
 		if nums[i] == 0 {
 			dp[i] = 0
-		} else if nums[i] >= len(nums)-1-i {
+		} else if nums[i] >= l-1-i {
 			dp[i] = 1
 		} else {
-			m := min(len(dp), i+nums[i])
-			mm := m + nums[i]
-			mRange := dp[m:mm]
+			mRange := dp[i+1 : i+nums[i]+1]
 			dp[i] = dp[i] + 1 + minNonZero(mRange...)
 		}
 	}

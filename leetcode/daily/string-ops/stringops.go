@@ -26,3 +26,50 @@ func ProcessStringOps(s string) string {
 
 	return string(chars)
 }
+
+func ProcessSpecialStringOps(s string, k int64) byte {
+	var totalLen int64
+
+	for _, char := range s {
+		switch char {
+		case '*':
+			if totalLen >= 1 {
+				totalLen--
+			}
+		case '#':
+			totalLen *= 2
+		case '%':
+			// Continue here to avoid adding where there is no need to
+			continue
+		default:
+			totalLen++
+		}
+	}
+
+	if k >= totalLen {
+		return '.'
+	}
+
+	r := []rune(s)
+	for i := len(r) - 1; i >= 0; i-- {
+		switch r[i] {
+		case '*':
+			totalLen++
+		case '#':
+			halfLen := totalLen / 2
+			if k >= halfLen {
+				k -= halfLen
+			}
+			totalLen = halfLen
+		case '%':
+			k = totalLen - 1 - k
+		default:
+			if k == totalLen-1 {
+				return byte(r[i])
+			}
+			totalLen--
+		}
+	}
+
+	return '.'
+}

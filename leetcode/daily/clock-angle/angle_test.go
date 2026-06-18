@@ -26,6 +26,16 @@ func TestClockAngle(t *testing.T) {
 			minute:   15,
 			expected: 7.5,
 		},
+		"4:50": {
+			hour:     4,
+			minute:   50,
+			expected: 155,
+		},
+		"1:57": {
+			hour:     1,
+			minute:   57,
+			expected: 76.5,
+		},
 	}
 
 	for name, tc := range testCases {
